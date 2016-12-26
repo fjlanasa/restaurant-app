@@ -2,3 +2,34 @@
   display: flex;
   justify-content: center;
 }
+
+input[type='text'] {
+  border-radius: 5px;
+}
+
+input.dollar {
+  display: none;
+}
+
+label.dollar {
+  float: right;
+  padding: 10px;
+  margin: 0;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.dollar:checked ~ label.dollar {
+  color: #4CAF50;
+  transition: all .25s;
+}
+
+input.dollar-5:checked ~ label.dollar {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.dollar-1:checked ~ label.dollar { color: #F62; }
+
+label.dollar:hover { transform: rotate(-15deg) scale(1.3); }

@@ -5,3 +5,7 @@ require 'pry'
 get '/' do
   erb :layout
 end
+
+get '/api' do
+  
+end
