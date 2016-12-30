@@ -2,8 +2,6 @@ require 'sinatra'
 require 'json'
 require 'http'
 
-Dotenv.load
-
 CLIENT_ID = ENV['YELP_ID']
 CLIENT_SECRET = ENV['YELP_SECRET']
 
