@@ -1,6 +1,29 @@
 #root {
   display: flex;
   justify-content: center;
+  align-items: center;
+  align-content: space-around;
+  height: 100%;
+}
+
+.columns {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+form {
+  width: 95%;
+  margin: auto;
+  text-align: center;
+  height: 95%;
+}
+
+form div {
+  height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
 }
 
 input[type='text'] {
@@ -33,3 +56,27 @@ input.dollar-5:checked ~ label.dollar {
 input.dollar-1:checked ~ label.dollar { color: #F62; }
 
 label.dollar:hover { transform: rotate(-15deg) scale(1.3); }
+
+
+i.fa-map-marker span {
+  margin-left: 10px;
+}
+
+.current-location {
+  font-family: FontAwesome;
+}
+
+.current-location::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #0095FF;
+}
+.current-location:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #0095FF;
+   opacity:  1;
+}
+.current-location::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #0095FF;
+   opacity:  1;
+}
+.current-location:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #0095FF;
+}
