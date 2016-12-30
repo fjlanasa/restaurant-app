@@ -1,6 +1,4 @@
 require 'sinatra'
-require 'pry'
-require 'dotenv'
 require 'json'
 require 'http'
 
