@@ -16,7 +16,7 @@ class App extends Component {
       searchTerm: null,
       query: null,
       results: [],
-      resultIndex: 0
+      resultIndex: 0,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -77,7 +77,7 @@ class App extends Component {
                   distance: 25,
                   searchTerm: null,
                   results: [],
-                  randomResult: null});
+                  resultIndex: 0});
   }
 
   previousClick() {

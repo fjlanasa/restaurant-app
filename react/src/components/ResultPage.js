@@ -15,7 +15,7 @@ function ResultPage(props){
         {previous}
         <div className='result-info'>
           <p>{props.randomResult.name}</p>
-          <div>
+          <div className='yelp-link'>
             <a href={props.randomResult.url} target='_blank'>
               <i className="fa fa-yelp fa-2x" aria-hidden="true"></i>
               Check it out on Yelp!
