@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SearchPage from './SearchPage';
 import ResultPage from './ResultPage';
+import LoadingPage from './LoadingPage';
+import NoResultsPage from './NoResultsPage'
 
 class App extends Component {
   constructor(props) {
@@ -14,14 +16,15 @@ class App extends Component {
       searchTerm: null,
       query: null,
       results: [],
-      randomResult: null
+      resultIndex: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.geoLocate = this.geoLocate.bind(this)
     this.newSearch = this.newSearch.bind(this)
-    this.newResult = this.newResult.bind(this)
+    this.previousClick = this.previousClick.bind(this)
+    this.nextClick = this.nextClick.bind(this)
   }
 
   geoLocate() {
@@ -35,6 +38,7 @@ class App extends Component {
 
   handleSubmit(event){
     event.preventDefault();
+    this.setState({view: 'loadingPage'});
     $.ajax({
       url: '/api',
       dataType: 'json',
@@ -44,10 +48,14 @@ class App extends Component {
              radius: this.state.distance,
              price: this.state.price}
     }).done((data) => {
-      this.setState({view: 'resultPage',
-                    results: data.businesses,
-                    randomResult: data.businesses[Math.floor(Math.random() * data.businesses.length)]});
-    })
+      if(data.length !== 0){
+        this.setState({view: 'resultPage',
+                      results: data
+                    });
+      } else {
+        this.setState({view: 'noResultsPage'});
+      }
+    });
   }
 
   handleBlur(event){
@@ -67,11 +75,19 @@ class App extends Component {
                   address: null,
                   price: '4',
                   distance: 25,
-                  searchTerm: null});
+                  searchTerm: null,
+                  results: [],
+                  randomResult: null});
   }
 
-  newResult() {
-    this.setState({randomResult: this.state.results[Math.floor(Math.random() * this.state.results.length)]})
+  previousClick() {
+    let currentIndex = this.state.resultIndex;
+    this.setState({resultIndex: currentIndex - 1});
+  }
+
+  nextClick() {
+    let currentIndex = this.state.resultIndex;
+    this.setState({resultIndex: currentIndex + 1});
   }
 
   componentDidMount() {
@@ -91,10 +107,17 @@ class App extends Component {
     } else if (this.state.view == 'resultPage') {
       view = <ResultPage
               newSearch={this.newSearch}
-              newResult={this.newResult}
-              randomResult={this.state.randomResult}/>;
+              index={this.state.resultIndex}
+              length={this.state.results.length}
+              randomResult={this.state.results[this.state.resultIndex]}
+              previousClick={this.previousClick}
+              nextClick={this.nextClick}
+            />;
+    } else if (this.state.view == 'loadingPage') {
+      view = <LoadingPage />;
+    } else if (this.state.view == 'noResultsPage') {
+      view = <NoResultsPage newSearch={this.newSearch} />
     }
-    console.log(this.state);
     return (
       <div className='small-12 columns'>
         {view}

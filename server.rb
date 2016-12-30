@@ -55,7 +55,6 @@ get '/api' do
     term: params[:term],
     location: params[:address],
     limit: 50,
-    radius: 40000,
     latitude: lat,
     longitude: lng,
     price: price_string,
@@ -63,5 +62,5 @@ get '/api' do
     categories: 'restaurants'
   }
   response = HTTP.auth(bearer_token).get(url, params: search_params)
-  response.parse.to_json
+  response.parse['businesses'].shuffle.to_json
 end

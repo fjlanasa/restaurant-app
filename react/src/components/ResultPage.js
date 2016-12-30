@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 
 function ResultPage(props){
-  let img = props.randomResult.image_url;
-  console.log(props.randomResult);
+  let previous = <div></div>;
+  let next = <div></div>;
+  if(props.index !== 0) {
+    previous = <i className="fa fa-chevron-circle-left" aria-hidden="true" onClick={props.previousClick}></i>
+  }
+  if(props.index !== props.length - 1) {
+    next = <i className="fa fa-chevron-circle-right" aria-hidden="true" onClick={props.nextClick}></i>
+  }
   return(
-    <div className='small-12 columns'>
-      <p>{props.randomResult.name}</p>
-      <img src={img} />
-      <a className='button' onClick={props.newSearch}>New Search</a>
-      <a className='button' onClick={props.newResult}>New Result</a>
+    <div className='small-12 columns' id='result'>
+      <div className='result-buttons'>
+        {previous}
+        <div className='result-info'>
+          <p>{props.randomResult.name}</p>
+        </div>
+        {next}
+      </div>
+      <div>
+        <a className='button' onClick={props.newSearch}>New Search</a>
+      </div>
     </div>
   );
 }
