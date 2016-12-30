@@ -4,10 +4,10 @@ function ResultPage(props){
   let previous = <div></div>;
   let next = <div></div>;
   if(props.index !== 0) {
-    previous = <i className="fa fa-chevron-circle-left" aria-hidden="true" onClick={props.previousClick}></i>
+    previous = <i className="fa fa-chevron-circle-left fa-2x" aria-hidden="true" onClick={props.previousClick}></i>
   }
   if(props.index !== props.length - 1) {
-    next = <i className="fa fa-chevron-circle-right" aria-hidden="true" onClick={props.nextClick}></i>
+    next = <i className="fa fa-chevron-circle-right fa-2x" aria-hidden="true" onClick={props.nextClick}></i>
   }
   return(
     <div className='small-12 columns' id='result'>
@@ -15,6 +15,12 @@ function ResultPage(props){
         {previous}
         <div className='result-info'>
           <p>{props.randomResult.name}</p>
+          <div>
+            <a href={props.randomResult.url} target='_blank'>
+              <i className="fa fa-yelp fa-2x" aria-hidden="true"></i>
+              Check it out on Yelp!
+            </a>
+          </div>
         </div>
         {next}
       </div>
@@ -24,31 +30,5 @@ function ResultPage(props){
     </div>
   );
 }
-
-// class ResultPage extends Component {
-//   constructor(props){
-//     super(props);
-//     this.state = {
-//       randomResult: null
-//     }
-//   }
-//
-//   componentDidMount() {
-//     this.setState({randomResult: this.props.results[Math.floor(Math.random() * this.props.results.length)]})
-//   }
-//
-//   render() {
-//     let img;
-//     if (this.state.randomResult) {
-//       img = this.state.randomResult.image_url
-//     }
-//     return(
-//       <div className='small-12 columns'>
-//         <img src={img} />
-//         <a className='button' onClick={this.props.newSearch}>New Search</a>
-//       </div>
-//     );
-//   }
-// }
 
 export default ResultPage;

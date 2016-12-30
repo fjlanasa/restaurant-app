@@ -32,6 +32,22 @@
   justify-content: space-around;
 }
 
+.result-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.result-info a {
+  color: black;
+}
+
+.fa-yelp {
+  color: #D32323;
+  margin-right: 10px;
+}
+
 form {
   width: 95%;
   margin: auto;
