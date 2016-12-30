@@ -56,6 +56,18 @@
   margin: 10px;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading i {
+  margin: 20px;
+  color: #D32323;
+}
+
 form {
   width: 95%;
   margin: auto;
