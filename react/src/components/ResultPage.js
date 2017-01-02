@@ -15,13 +15,10 @@ function ResultPage(props){
         {previous}
         <div className='result-info'>
           <p>{props.randomResult.name}</p>
-          <iframe
-            width="300"
-            height="200"
-            frameborder="0" style="border:0"
+          {/* <iframe
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD9mAlxkvAm5qO4TCibWRieqEfzlbBeAew
-              &q=Space+Needle,Seattle+WA" allowfullscreen>
-          </iframe>
+              &q=Space+Needle,Seattle+WA">
+          ></iframe> */}
           <div className='yelp-link'>
             <a href={props.randomResult.url} target='_blank'>
               <i className="fa fa-yelp fa-2x" aria-hidden="true"></i>
