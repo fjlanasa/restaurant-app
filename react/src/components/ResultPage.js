@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 function ResultPage(props){
+  let address = props.randomResult.location.display_address[0];
+  let city = props.randomResult.location.display_address[1];
+  let src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyD9mAlxkvAm5qO4TCibWRieqEfzlbBeAew
+    &q=${address}, ${city}`
   let previous = <div></div>;
   let next = <div></div>;
   if(props.index !== 0) {
@@ -14,8 +18,10 @@ function ResultPage(props){
       <div className='result-buttons'>
         {previous}
         <div className='result-info'>
-          <p>{props.randomResult.name}</p>
-          <p>hey!</p>
+          <h3>{props.randomResult.name}</h3>
+          <iframe
+            src={src}>
+          </iframe>
           <div className='yelp-link'>
             <a href={props.randomResult.url} target='_blank'>
               <i className="fa fa-yelp fa-2x" aria-hidden="true"></i>
