@@ -38,24 +38,30 @@ class App extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    this.setState({view: 'loadingPage'});
-    $.ajax({
-      url: '/api',
-      dataType: 'json',
-      data: {term: this.state.searchTerm,
-             ll: this.state.location,
-             address: document.getElementById('location-input').value,
-             radius: this.state.distance,
-             price: this.state.price}
-    }).done((data) => {
-      if(data.length !== 0){
-        this.setState({view: 'resultPage',
-                      results: data
-                    });
-      } else {
-        this.setState({view: 'noResultsPage'});
-      }
-    });
+    let location = this.state.location;
+    let address = document.getElementById('location-input').value
+    if(location || address.trim()){
+      this.setState({view: 'loadingPage'});
+      $.ajax({
+        url: '/api',
+        dataType: 'json',
+        data: {term: this.state.searchTerm,
+          ll: this.state.location,
+          address: document.getElementById('location-input').value,
+          radius: this.state.distance,
+          price: this.state.price}
+        }).done((data) => {
+          if(data.length !== 0){
+            this.setState({view: 'resultPage',
+            results: data
+          });
+        } else {
+          this.setState({view: 'noResultsPage'});
+        }
+      });
+    } else {
+      toastr.error('Must supply a location');
+    }
   }
 
   handleBlur(event){
