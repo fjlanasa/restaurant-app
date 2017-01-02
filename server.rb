@@ -30,6 +30,7 @@ get '/' do
 end
 
 get '/api' do
+  business = []
   price_string = ''
   price = params[:price].to_i
   (price-1).times do |i|
@@ -58,5 +59,8 @@ get '/api' do
     categories: 'restaurants'
   }
   response = HTTP.auth(bearer_token).get(url, params: search_params)
-  response.parse['businesses'].shuffle.to_json
+  if response.parse['businesses']
+    businesses = response.parse['businesses'].shuffle.to_json
+  end
+  businesses
 end
