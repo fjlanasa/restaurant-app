@@ -15,10 +15,7 @@ function ResultPage(props){
         {previous}
         <div className='result-info'>
           <p>{props.randomResult.name}</p>
-          {/* <iframe
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD9mAlxkvAm5qO4TCibWRieqEfzlbBeAew
-              &q=Space+Needle,Seattle+WA">
-          ></iframe> */}
+          <p>hey!</p>
           <div className='yelp-link'>
             <a href={props.randomResult.url} target='_blank'>
               <i className="fa fa-yelp fa-2x" aria-hidden="true"></i>
