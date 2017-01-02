@@ -60,7 +60,7 @@ get '/api' do
   }
   response = HTTP.auth(bearer_token).get(url, params: search_params)
   if response.parse['businesses']
-    businesses = response.parse['businesses'].shuffle.to_json
+    businesses = response.parse['businesses'].shuffle
   end
   businesses.to_json
 end
