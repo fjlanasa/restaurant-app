@@ -30,7 +30,7 @@ get '/' do
 end
 
 get '/api' do
-  business = []
+  businesses = []
   price_string = ''
   price = params[:price].to_i
   (price-1).times do |i|
@@ -62,5 +62,5 @@ get '/api' do
   if response.parse['businesses']
     businesses = response.parse['businesses'].shuffle.to_json
   end
-  businesses
+  businesses.to_json
 end
